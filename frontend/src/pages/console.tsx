@@ -20,7 +20,7 @@ function Console() {
 
     const [monthlySales, setMonthlySales] = useState([]) // state for monthly sales with month and sales in an array
     const [totalMonthlySales, setTotalMonthlySales]: any = useState({})
-    const [monthlyRevenue, setMonthlyRevenue]: any = useState({})
+    const [monthlyRevenue, setMonthlyRevenue]: any = useState({revenue: 0, revenueGrowth: 0})
     const [totalProducts, setTotalProducts]: any = useState()
     const [totalCustomers, setTotalCustomers]: any = useState({})
 
