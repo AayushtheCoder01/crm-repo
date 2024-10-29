@@ -1,5 +1,5 @@
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-function formatDate(dateString) {
+function formatDate(dateString: any) {
     const date = new Date(dateString);
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear().toString().slice(-2);
@@ -7,7 +7,7 @@ function formatDate(dateString) {
     return `${month}/${year}`;
 }
 
-function formatDatePrevMonth(dateString) {
+function formatDatePrevMonth(dateString: any) {
     const date = new Date(dateString);
     const month = (date.getMonth()).toString().padStart(2, "0");
     const year = date.getFullYear().toString().slice(-2);
@@ -53,8 +53,8 @@ export function getTopProducts(products: any) {
 
 export function getTotalMonthlySales(sales: any) {
     const month = new Date().getMonth() + 1
-    const totalMonthlySales = sales.filter((sale) => (sale.month == month))
-    const prevMonthSales = sales.filter((sale) => (sale.month == month - 1))
+    const totalMonthlySales = sales.filter((sale: any) => (sale.month == month))
+    const prevMonthSales = sales.filter((sale: any) => (sale.month == month - 1))
 
     const percentageIncrease = ((totalMonthlySales.length - prevMonthSales.length) / prevMonthSales.length) * 100;
     const salesGrowthPercentage = `${percentageIncrease.toFixed(2)}%`;
@@ -67,9 +67,9 @@ export function getTotalMonthlySales(sales: any) {
 
 export function getTotalRevenueThisMonth(monthlySales: any) {
     const month = new Date().getMonth()
-    const totalMonthlySales = monthlySales.filter((sale) => (sale.month == monthNames[month]))
+    const totalMonthlySales = monthlySales.filter((sale: any) => (sale.month == monthNames[month]))
 
-    const prevMonthSales = monthlySales.filter((sale) => (sale.month == monthNames[month - 1]))
+    const prevMonthSales = monthlySales.filter((sale: any) => (sale.month == monthNames[month - 1]))
     const revenueGrowth = ((totalMonthlySales[0]?.sales - prevMonthSales[0]?.sales) / prevMonthSales[0]?.sales) * 100
     return {
         revenue: totalMonthlySales[0]?.sales,

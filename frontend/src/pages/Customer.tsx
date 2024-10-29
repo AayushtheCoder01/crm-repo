@@ -1,5 +1,4 @@
 import { CustomerCard } from '../components/customer-card'
-import { getCustomerFn } from '../functions/customer'
 import {useRecoilState, useRecoilValue} from 'recoil'
 import {CustomerAtom, pageLoading, userDataAtom} from '../store/store'
 import {Button} from "../components/ui/button.tsx";
@@ -8,7 +7,7 @@ import {CreateCustomerFormComponent} from "../components/create-customer-form.ts
 import {WavyBars} from "spinny-loader";
 
 function Customer() {
-    const [customerAtom, setAtom] = useRecoilState(CustomerAtom)
+    const customerAtom = useRecoilValue(CustomerAtom)
     const userData = useRecoilValue(userDataAtom)
     const isLoading = useRecoilValue(pageLoading)
 

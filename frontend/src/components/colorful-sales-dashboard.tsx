@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
-import { ShoppingCart, Package, TrendingUp, Box, Users, UserPlus } from "lucide-react"
+import { ShoppingCart,TrendingUp, Box, Users, UserPlus } from "lucide-react"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"

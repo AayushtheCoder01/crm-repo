@@ -1,5 +1,5 @@
-import { getSalesFn } from "../functions/sales"
-import { useRecoilState, useRecoilValue } from "recoil"
+// import { getSalesFn } from "../functions/sales"
+import { useRecoilValue } from "recoil"
 import { SalesAtom, userDataAtom } from "../store/store"
 import { StackableSalesCard } from "../components/stackable-sales-card"
 import { useState } from "react"
@@ -7,13 +7,13 @@ import { SaleRegistrationComponent } from "../components/sale-registration"
 
 
  function SalesPage() {
-    const [salesAtom, setAtom] = useRecoilState(SalesAtom)
+    const salesAtom = useRecoilValue(SalesAtom)
     const isLogin = useRecoilValue(userDataAtom)
     const [newSale, setNewSale] = useState(false)
-    async function getSales() {
-        const api = await getSalesFn()
-        setAtom(api?.data.sales)
-    }
+    // async function getSales() {
+    //     const api = await getSalesFn()
+    //     setAtom(api?.data.sales)
+    // }
     return (
     <div className="text-center p-2">
       

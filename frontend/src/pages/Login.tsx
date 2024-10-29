@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import { useSetRecoilState } from 'recoil'
-import { userDataAtom } from '../store/store'
 import { useNavigate } from 'react-router-dom'
 import { Label } from '@radix-ui/react-label'
 import { Input } from '../components/ui/input'
-import { authlogin, Signin } from '../functions/auth'
+import { Signin } from '../functions/auth'
 import { Button } from '../components/ui/button'
 
 function Login() {
@@ -14,7 +12,6 @@ function Login() {
 })
 
 const navigate = useNavigate()
-const userData = useSetRecoilState(userDataAtom)
 
 async function getUserToken() {
   const user = await Signin({email: userInput.email, password: userInput.password})

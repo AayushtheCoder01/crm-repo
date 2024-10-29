@@ -1,5 +1,5 @@
 import { StackableProductCard } from "../components/stackable-product-card"
-import { getProductFn } from "../functions/product"
+// import { getProductFn } from "../functions/product"
 import {useRecoilState, useRecoilValue } from "recoil"
 import {pageLoading, ProductsAtom, userDataAtom} from "../store/store"
 import {WavyBars} from "spinny-loader";
@@ -13,10 +13,10 @@ function Products() {
     const [newProduct, setNewProduct] = useState(false)
     const [productsAtom, setAtom] = useRecoilState(ProductsAtom)
 
-    async function getProducts() {
-        const api = await getProductFn()
-        setAtom(api?.data.products)
-    }
+    // async function getProducts() {
+    //     const api = await getProductFn()
+    //     setAtom(api?.data.products)
+    // }
 
     if(isLoading === true) {
         return (

@@ -11,8 +11,6 @@ import {
 import SpinnyWrapper from "spinny-loader/wrapper";
 import {WavyBars} from "spinny-loader";
 
-const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
 function Console() {
     // states
     const sales = useRecoilValue(SalesAtom)

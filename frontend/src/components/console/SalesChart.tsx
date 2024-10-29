@@ -13,7 +13,7 @@ const SalesChart = ({sales}: {sales: any}) => {
     const data = sales
 
     // Function to format numbers in Indian style (with commas)
-    const formatIndianNumber = (num) => {
+    const formatIndianNumber = (num: any) => {
         return num.toLocaleString('en-IN');
     };
 

@@ -2,10 +2,8 @@ import { useState } from "react"
 import { Button } from "../components/ui/button"
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
-import { authlogin, signup } from "../functions/auth"
+import { signup } from "../functions/auth"
 import { useNavigate } from "react-router-dom"
-import { useSetRecoilState } from "recoil"
-import { userDataAtom } from "../store/store"
 
 function Signup() {
     const [userInput, setUserInput] = useState({
@@ -14,8 +12,7 @@ function Signup() {
         password: ""
     })
     const navigate = useNavigate()
-    const userData = useSetRecoilState(userDataAtom)
-    
+
     async function createNewUser() {
         const user = await signup({email: userInput.email, password: userInput.password, name: userInput.name})
         console.log(user)
