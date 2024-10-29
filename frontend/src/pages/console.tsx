@@ -11,6 +11,7 @@ import {
 import SpinnyWrapper from "spinny-loader/wrapper";
 import {WavyBars} from "spinny-loader";
 
+
 function Console() {
     // states
     const sales = useRecoilValue(SalesAtom)
@@ -20,7 +21,6 @@ function Console() {
 
     const [monthlySales, setMonthlySales] = useState([]) // state for monthly sales with month and sales in an array
     const [totalMonthlySales, setTotalMonthlySales]: any = useState({})
-    const [monthlyRevenue, setMonthlyRevenue]: any = useState({})
     const [totalProducts, setTotalProducts]: any = useState()
     const [totalCustomers, setTotalCustomers]: any = useState({})
 
@@ -28,10 +28,10 @@ function Console() {
         if(sales.length > 0) {
             setMonthlySales(getMonthlySalesArr(sales))
             setTotalMonthlySales(getTotalMonthlySales(sales))
-            setMonthlyRevenue(getTotalRevenueThisMonth(monthlySales))
             setTotalProducts(getToatlProducts(products))
             setTotalCustomers(getTotalCustomers(customers))
         }
+
     }, [sales]);
 
     return (
@@ -43,8 +43,8 @@ function Console() {
                 sales={monthlySales}
                 totalMonthlySales={totalMonthlySales.totalMonthlySales}
                 salesGrowth={totalMonthlySales.salesGrowth}
-                monthlyRevenue={monthlyRevenue.revenue}
-                revenueGrowth={monthlyRevenue.revenueGrowth}
+                monthlyRevenue={getTotalRevenueThisMonth(monthlySales).revenue}
+                revenueGrowth={getTotalRevenueThisMonth(monthlySales).revenueGrowth}
                 totalProducts={totalProducts}
                 totalCustomers={totalCustomers.totalCustomers}
                 thisMonthCustomers={totalCustomers.newCustomers}

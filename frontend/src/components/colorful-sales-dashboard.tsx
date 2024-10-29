@@ -109,7 +109,7 @@ export function ColorfulSalesDashboard({sales, totalMonthlySales, salesGrowth, m
               <TrendingUp className="w-4 h-4 text-orange-600 dark:text-orange-300" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-orange-900 dark:text-orange-50">104.46</div>
+              <div className="text-2xl font-bold text-orange-900 dark:text-orange-50">{monthlyRevenue/totalMonthlySales}</div>
               <p className="text-xs text-orange-700 dark:text-orange-200">+2% from last month</p>
             </CardContent>
           </Card>
