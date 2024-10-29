@@ -8,6 +8,7 @@ import Signup from './pages/Signup.tsx'
 import { RecoilRoot } from 'recoil'
 import Login from './pages/Login.tsx'
 import Dashboard from './pages/Dashboard.tsx'
+import Console from "./pages/console.tsx";
 const SalesPage = lazy(() => import('./pages/SalesPage.tsx'))
 const Customer = lazy(() => import('./pages/Customer.tsx'))
 const Products = lazy(() => import('./pages/Products.tsx'))
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "dashboard/customers",
         element: <Suspense fallback={<div></div>}><Dashboard><Customer/></Dashboard></Suspense>
+      },
+      {
+        path: "dashboard/console",
+        element: <Dashboard><Console/></Dashboard> ,
       },
       {
         path: "dashboard",

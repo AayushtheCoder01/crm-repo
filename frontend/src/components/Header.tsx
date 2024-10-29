@@ -24,7 +24,7 @@ function Header() {
                 console.log(user)
                 if(user.data.success === true) {
                   userData({email: user.data.user.email, name: user.data.user.name, id: user.data.user.id})
-                //   navigate("/dashboard")
+                  navigate("/dashboard/console")
                 } 
                 setLoading(false)
             } catch (error) {
@@ -41,7 +41,6 @@ function Header() {
         navigate("/")
         window.location.reload()
     }
-
   return (
     <header className="fixed border-b-2 px-5 flex justify-between top-0 dark:text-white left-0 right-0 z-10 bg-opacity-10 bg-white bg-transparent backdrop-filter backdrop-blur-md p-2">
     <div className='flex justify-center w-2/12 items-center p-1'>
@@ -52,10 +51,14 @@ function Header() {
         {
             isLogin.id? 
             <div className='flex'>
-                <Link to={"/dashboard"}>
+                <Link to={"/dashboard/console"}>
                     <p className='mx-2 font-bold'>Dashboard</p>
                 </Link>
                 <div className='mr-4 flex'>
+                    <Link to={"dashboard/console"}>
+                        <p className='mx-2 hidden sm:inline'>Console</p>
+                    </Link>
+
                     <Link to={"dashboard/sales"}>
                         <p className='mx-2 hidden sm:inline'>Sales</p>
                     </Link>

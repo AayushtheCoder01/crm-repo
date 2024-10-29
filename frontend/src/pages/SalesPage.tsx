@@ -10,7 +10,6 @@ import { SaleRegistrationComponent } from "../components/sale-registration"
     const [salesAtom, setAtom] = useRecoilState(SalesAtom)
     const isLogin = useRecoilValue(userDataAtom)
     const [newSale, setNewSale] = useState(false)
-
     async function getSales() {
         const api = await getSalesFn()
         setAtom(api?.data.sales)

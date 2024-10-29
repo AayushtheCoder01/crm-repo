@@ -1,4 +1,3 @@
-import React from 'react'
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from './ui/sidebar'
 import { Calendar, Home, Inbox, Search, Settings } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
@@ -6,22 +5,22 @@ import { NavLink } from 'react-router-dom'
 // Menu items.
 const items = [
     {
-      title: "Overview",
-      url: "overview",
+      title: "Console",
+      url: "dashboard/console",
       icon: Home,
     },
     {
-      title: "sales",
+      title: "Sales",
       url: "dashboard/sales",
-      // icon: Inbox,
+      icon: Inbox,
     },
     {
-      title: "products",
+      title: "Products",
       url: "dashboard/products",
       icon: Calendar,
     },
     {
-      title: "customers",
+      title: "Customers",
       url: "dashboard/customers",
       icon: Search,
     },

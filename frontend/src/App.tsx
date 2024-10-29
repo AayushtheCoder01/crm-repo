@@ -10,7 +10,7 @@ function App() {
     <>
       <div className='w-full h-screen flex justify-center items-center'>
         {
-          userData? <SpinnyWrapper backgroundEffect={true}><WavyBars></WavyBars></SpinnyWrapper>: null
+          userData? <SpinnyWrapper backgroundEffect={false}><WavyBars></WavyBars></SpinnyWrapper>: null
         }
         </div>   
     </>

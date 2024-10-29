@@ -44,7 +44,7 @@ export async function authlogin({Authorization, updateCustomerAtom, updateSalesA
         updateCustomerAtom(user.data.user.customers.reverse())
         updateSalesAtom(user.data.user.sales.reverse())
         updateProductsAtom(user.data.user.products.reverse())
-        console.log(user.data)
+        // console.log(user.data)
         return user
     } catch (error) {
         console.log("error", error)
