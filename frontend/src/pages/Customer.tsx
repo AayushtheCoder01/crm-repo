@@ -1,5 +1,5 @@
 import { CustomerCard } from '../components/customer-card'
-import {useRecoilState, useRecoilValue} from 'recoil'
+import {useRecoilValue} from 'recoil'
 import {CustomerAtom, pageLoading, userDataAtom} from '../store/store'
 import {Button} from "../components/ui/button.tsx";
 import {useState} from "react";

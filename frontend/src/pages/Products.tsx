@@ -1,6 +1,6 @@
 import { StackableProductCard } from "../components/stackable-product-card"
 // import { getProductFn } from "../functions/product"
-import {useRecoilState, useRecoilValue } from "recoil"
+import { useRecoilValue } from "recoil"
 import {pageLoading, ProductsAtom, userDataAtom} from "../store/store"
 import {WavyBars} from "spinny-loader";
 import {useState} from "react";
@@ -11,7 +11,7 @@ function Products() {
     const isLoading = useRecoilValue(pageLoading)
     const userData = useRecoilValue(userDataAtom)
     const [newProduct, setNewProduct] = useState(false)
-    const [productsAtom, setAtom] = useRecoilState(ProductsAtom)
+    const productsAtom  = useRecoilValue(ProductsAtom)
 
     // async function getProducts() {
     //     const api = await getProductFn()
