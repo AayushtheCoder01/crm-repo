@@ -15,7 +15,7 @@ export function SettingsPageComponent() {
   const handleDelete = async () => {
     setIsDeleting(true)
 
-    const api: any = await deleteAccount({userToken: localStorage.getItem("Authorization")})
+    const api = await deleteAccount({userToken: localStorage.getItem("Authorization")})
     if(api.data.success === true) {
       setIsDeleting(false)
       alert(api.data.message)
@@ -33,7 +33,7 @@ export function SettingsPageComponent() {
       <div className="space-y-6">
         <div className="space-y-2">
           <Label htmlFor="user-id">User ID</Label>
-          <Input id="user-id" value={userData.id} readOnly className="bg-muted" />
+          <Input id="user-id" value={userData.id || ''} readOnly className="bg-muted" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>

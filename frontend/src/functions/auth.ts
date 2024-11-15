@@ -51,7 +51,7 @@ export async function authlogin({Authorization, updateCustomerAtom, updateSalesA
     }
 }
 
-export async function deleteAccount({userToken}: {userToken: string}) {
+export async function deleteAccount({userToken}: {userToken: any}) {
     try {
         const user: any = await axios.delete(`${Backend_URL}/api/v1/user/delete`, {
             headers: {
