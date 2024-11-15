@@ -1,14 +1,21 @@
 import React from 'react'
 import { SidebarProvider, SidebarTrigger } from '../components/ui/sidebar'
 import AppSidebar from '../components/AppSidebar'
+import {userDataAtom} from "../store/store.ts";
+import {useRecoilValue} from "recoil";
+import {useNavigate} from "react-router-dom";
 
 function Dashboard({
     children
 }: {
     children: React.ReactNode
 }) {
+    const isLogin = useRecoilValue(userDataAtom)
+    const navigate = useNavigate()
 
-
+    if(isLogin.id === null) {
+        navigate('/login')
+    }
   return (
     <div className='flex'>
         <div>

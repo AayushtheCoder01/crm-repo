@@ -6,23 +6,7 @@ import { Input } from "./ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
 import SalesChart from "./console/SalesChart.tsx";
 
-// Mock data
-const recentSales = [
-  { id: 1, date: '2024-10-28', customer: 'John Doe', amount: 125.50, status: 'Completed' },
-  { id: 2, date: '2024-10-27', customer: 'Jane Smith', amount: 200.00, status: 'Pending' },
-  { id: 3, date: '2024-10-26', customer: 'Bob Johnson', amount: 75.25, status: 'Completed' },
-  { id: 4, date: '2024-10-25', customer: 'Alice Brown', amount: 300.00, status: 'Completed' },
-  { id: 5, date: '2024-10-24', customer: 'Charlie Davis', amount: 150.75, status: 'Pending' },
-]
-
-const topProducts = [
-  { name: 'Product A', sales: 120, revenue: 12000 },
-  { name: 'Product B', sales: 85, revenue: 8500 },
-  { name: 'Product C', sales: 65, revenue: 6500 },
-  { name: 'Product D', sales: 50, revenue: 5000 },
-]
-
-export function ColorfulSalesDashboard({sales, totalMonthlySales, salesGrowth, monthlyRevenue, revenueGrowth, totalProducts, totalCustomers, thisMonthCustomers, customerGrowth}: {sales: any, totalMonthlySales: number, salesGrowth: string, monthlyRevenue: number, revenueGrowth: string , totalProducts: number, totalCustomers: number, thisMonthCustomers: number, customerGrowth: string}) {
+export function ColorfulSalesDashboard({sales, totalMonthlySales, salesGrowth, monthlyRevenue, revenueGrowth, totalProducts, totalCustomers, thisMonthCustomers, customerGrowth, salesAtom}: {sales: any, salesAtom: any, totalMonthlySales: number, salesGrowth: string, monthlyRevenue: number, revenueGrowth: string , totalProducts: number, totalCustomers: number, thisMonthCustomers: number, customerGrowth: string}) {
     const [dateRange, setDateRange] = useState({ start: '2024-10-01', end: '2024-10-28' })
 
   return (
@@ -109,13 +93,13 @@ export function ColorfulSalesDashboard({sales, totalMonthlySales, salesGrowth, m
               <TrendingUp className="w-4 h-4 text-orange-600 dark:text-orange-300" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-orange-900 dark:text-orange-50">{monthlyRevenue/totalMonthlySales}</div>
-              <p className="text-xs text-orange-700 dark:text-orange-200">+2% from last month</p>
+              <div className="text-2xl font-bold text-orange-900 dark:text-orange-50">{(monthlyRevenue/totalMonthlySales).toFixed(0)}</div>
+              <p className="text-xs text-orange-700 dark:text-orange-200">Avg customer purchase value this month</p>
             </CardContent>
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 overflow-x-scroll sm:overflow-hidden">
+        <div className=" mb-6 overflow-x-scroll sm:overflow-hidden">
           <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 w-[100vw] sm:w-auto">
             <CardHeader>
               <CardTitle className="text-lg font-semibold text-gray-800 dark:text-gray-100">Sales Trend</CardTitle>
@@ -124,31 +108,6 @@ export function ColorfulSalesDashboard({sales, totalMonthlySales, salesGrowth, m
               <div className="h-auto w-full flex items-center justify-center text-gray-500 dark:text-gray-400">
                 <SalesChart sales={sales} />
               </div>
-            </CardContent>
-          </Card>
-          <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
-            <CardHeader>
-              <CardTitle className="text-lg font-semibold text-gray-800 dark:text-gray-100">Top Selling Products</CardTitle>
-            </CardHeader>
-            <CardContent className="mt-6">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="text-gray-600 dark:text-gray-300">Product</TableHead>
-                    <TableHead className="text-right text-gray-600 dark:text-gray-300">Sales</TableHead>
-                    <TableHead className="text-right text-gray-600 dark:text-gray-300">Revenue</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {topProducts.map((product: any) => (
-                    <TableRow key={product.name}>
-                      <TableCell className="font-medium text-gray-800 dark:text-gray-200">{product.name}</TableCell>
-                      <TableCell className="text-right text-gray-800 dark:text-gray-200">{product.quantity}</TableCell>
-                      <TableCell className="text-right text-gray-800 dark:text-gray-200">{product.purchasePrice}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
             </CardContent>
           </Card>
         </div>
@@ -161,19 +120,21 @@ export function ColorfulSalesDashboard({sales, totalMonthlySales, salesGrowth, m
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="text-gray-600 dark:text-gray-300">Date</TableHead>
-                  <TableHead className="text-gray-600 dark:text-gray-300">Customer</TableHead>
+                  <TableHead className="text-gray-600 text-center dark:text-gray-300">Date</TableHead>
+                  <TableHead className="text-gray-600 text-center dark:text-gray-300">Ph Number</TableHead>
+                  <TableHead className="text-right text-gray-600 dark:text-gray-300">Quantity</TableHead>
+                  <TableHead className="text-right text-gray-600 dark:text-gray-300">Item Name</TableHead>
                   <TableHead className="text-right text-gray-600 dark:text-gray-300">Amount</TableHead>
-                  <TableHead className="text-right text-gray-600 dark:text-gray-300">Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {recentSales.map((sale) => (
+                {salesAtom.map((sale: any) => (
                   <TableRow key={sale.id}>
-                    <TableCell className="font-medium text-gray-800 dark:text-gray-200">{sale.date}</TableCell>
-                    <TableCell className="text-gray-800 dark:text-gray-200">{sale.customer}</TableCell>
-                    <TableCell className="text-right text-gray-800 dark:text-gray-200">{sale.amount.toFixed(2)}</TableCell>
-                    <TableCell className="text-right text-gray-800 dark:text-gray-200">{sale.status}</TableCell>
+                    <TableCell className="font-medium text-gray-800 dark:text-gray-200">{new Date(sale.saleDate).toLocaleDateString()}</TableCell>
+                    <TableCell className="text-gray-800 dark:text-gray-200">{sale.number}</TableCell>
+                    <TableCell className="text-right text-gray-800 dark:text-gray-200">{sale.quantity}</TableCell>
+                    <TableCell className="text-right text-gray-800 dark:text-gray-200">{sale.itemname}</TableCell>
+                    <TableCell className="text-right text-gray-800 dark:text-gray-200">{sale.totalPrice.toFixed(2)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

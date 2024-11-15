@@ -49,6 +49,7 @@ function Console() {
                 totalCustomers={totalCustomers.totalCustomers}
                 thisMonthCustomers={totalCustomers.newCustomers}
                 customerGrowth={totalCustomers.customerGrowth}
+                salesAtom={sales}
             />
         </div>
     )

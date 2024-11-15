@@ -1,6 +1,6 @@
 import { Card, CardContent } from "./ui/card"
 import { Badge } from "./ui/badge"
-import { Package, DollarSign, CalendarIcon } from "lucide-react"
+import { Package, CalendarIcon } from "lucide-react"
 
 interface ProductCardProps {
   itemId?: string
@@ -38,8 +38,8 @@ export function StackableProductCard({
               <span>{new Date(dateAdded).toLocaleDateString()}</span>
             </div>
               <div className="flex items-center space-x-2">
-                <DollarSign className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm font-medium">${purchasePrice}</span>
+                {/*<DollarSign className="h-4 w-4 text-muted-foreground" />*/}
+                <span className="text-sm font-medium"> ₹ {purchasePrice}</span>
               </div>
               <Badge variant="secondary" className="text-xs">
                 {quantity > 0 ? "In Stock" : "Out of Stock"}

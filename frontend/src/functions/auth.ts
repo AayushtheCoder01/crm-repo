@@ -50,3 +50,16 @@ export async function authlogin({Authorization, updateCustomerAtom, updateSalesA
         console.log("error", error)
     }
 }
+
+export async function deleteAccount({userToken}: {userToken: string}) {
+    try {
+        const user: any = await axios.delete(`${Backend_URL}/api/v1/user/delete`, {
+            headers: {
+                Authorization: userToken
+            }
+        })
+        return user
+    } catch (error) {
+        console.log("error", error)
+    }
+}
