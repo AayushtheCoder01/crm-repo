@@ -21,7 +21,6 @@ function Header() {
             setLoading(true)
             try {
                 const user: any = await authlogin({Authorization: localStorage.getItem("Authorization"), updateCustomerAtom: updateCustomerAtom, updateSalesAtom: updateSalesAtom, updateProductsAtom: updateProductsAtom})
-                console.log(user)
                 if(user.data.success === true) {
                   userData({email: user.data.user.email, name: user.data.user.name, id: user.data.user.id})
                   navigate("/dashboard/console")
@@ -42,7 +41,7 @@ function Header() {
         window.location.reload()
     }
   return (
-    <header className="fixed border-b-2 px-5 flex justify-between top-0 dark:text-white left-0 right-0 z-10 bg-opacity-10 bg-white bg-transparent backdrop-filter backdrop-blur-md p-2">
+    <header className="fixed border-b-2 px-5 flex justify-between top-0 dark:text-white left-0 right-0 z-10 bg-opacity-10 bg-white bg-transparent dark:bg-black backdrop-filter backdrop-blur-md p-2">
     <div className='flex justify-center w-2/12 items-center p-1'>
          <h1 className='text-2xl md:text-3xl cursor-pointer font-bold font-mono tracking-widest'>CRM</h1>
     </div>

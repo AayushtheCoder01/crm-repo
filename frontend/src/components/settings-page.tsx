@@ -37,7 +37,7 @@ export function SettingsPageComponent() {
         </div>
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
-          <Input id="name" value={userData.name} readOnly className="bg-muted" />
+          <Input id="name" value={userData.name || ''} readOnly className="bg-muted" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>

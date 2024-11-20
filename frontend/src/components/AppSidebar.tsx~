@@ -33,9 +33,9 @@ const items = [
 function AppSidebar() {
 
   return (
-    <Sidebar>
+    <Sidebar className='dark:bg-black'>
       <SidebarContent className='dark:bg-black'>
-        <SidebarGroup>
+        <SidebarGroup >
           <SidebarGroupLabel>C R M</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
