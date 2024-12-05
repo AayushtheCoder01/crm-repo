@@ -18,7 +18,7 @@ function Dashboard({
     }
   return (
     <div className='flex'>
-        <div>
+        <div className="dark:bg-black">
             <SidebarProvider>
             <AppSidebar />
             {/* <Sidebar_01 /> */}
@@ -27,7 +27,7 @@ function Dashboard({
             </main>
         </SidebarProvider>
         </div>
-      <div className='flex justify-start mt-7 sm:justify-center items-center h-full w-[100%] '>
+      <div className='flex justify-start mt-7 sm:justify-center items-center h-full w-[100%]'>
             {children}
           </div>
     </div>

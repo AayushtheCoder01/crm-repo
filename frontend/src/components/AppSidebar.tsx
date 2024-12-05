@@ -34,11 +34,11 @@ function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarContent className='dark:bg-black'>
+      <SidebarContent className='dark:bg-black overflow-hidden'>
         <SidebarGroup>
-          <SidebarGroupLabel>C R M</SidebarGroupLabel>
+          <SidebarGroupLabel className='m-2 ml-5 mt-3 text-lg'>C R M</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className='mx-4 ml-10 my-4'>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
@@ -54,7 +54,7 @@ function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+          )
 }
 
 export default AppSidebar

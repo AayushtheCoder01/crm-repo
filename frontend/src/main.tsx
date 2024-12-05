@@ -10,6 +10,8 @@ import Login from './pages/Login.tsx'
 import Dashboard from './pages/Dashboard.tsx'
 import Console from "./pages/console.tsx";
 import SettingsPage from "./pages/Settings.tsx";
+import SpinnyWrapper from "spinny-loader/wrapper";
+import {WavyBars} from "spinny-loader";
 const SalesPage = lazy(() => import('./pages/SalesPage.tsx'))
 const Customer = lazy(() => import('./pages/Customer.tsx'))
 const Products = lazy(() => import('./pages/Products.tsx'))
@@ -59,10 +61,7 @@ const router = createBrowserRouter([
   }
 ])
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
     <RecoilRoot>
       <RouterProvider router={router}/>
     </RecoilRoot>
-      {/* <App /> */}
-  </StrictMode>,
 )

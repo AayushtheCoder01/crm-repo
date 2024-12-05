@@ -27,7 +27,7 @@ export function ColorfulSalesDashboard({sales, totalMonthlySales, salesGrowth, m
               onChange={(e) => setDateRange({ ...dateRange, end: e.target.value })}
               className="bg-white dark:bg-black text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600"
             />
-            <Button variant="outline" className="bg-white dark:bg-black text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600">
+            <Button variant="outline" className="bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600">
               Apply
             </Button>
           </div>

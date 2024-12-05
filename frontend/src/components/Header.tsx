@@ -1,14 +1,19 @@
-import { useEffect } from 'react'
+import {useEffect, useState} from 'react'
 import { LuLogOut } from "react-icons/lu";
+import { Switch } from "../components/ui/switch.tsx"
 import {Link, NavLink, useNavigate} from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { CustomerAtom, pageLoading, ProductsAtom, SalesAtom, userDataAtom } from '../store/store'
 import { authlogin } from '../functions/auth';
+import { Sun } from 'lucide-react';
+import { Moon } from 'lucide-react';
+import {Separator} from "./ui/separator.tsx";
 
 function Header() {
+    const [theme, setTheme] = useState(false)
     const isLogin = useRecoilValue(userDataAtom)
     const setLoading = useSetRecoilState(pageLoading)
-    // const userData = useRecoilValue(userDataAtom)
+
     const navigate = useNavigate()
     const userData = useSetRecoilState(userDataAtom)
 
@@ -32,8 +37,17 @@ function Header() {
         }
         useEffect(()=> {
             login()
-
         }, [])
+
+    function changeTheme() {
+        if(theme === false) {
+            setTheme(true)
+            document.documentElement.classList.add("dark")
+        } else {
+            setTheme(false)
+            document.documentElement.classList.remove("dark")
+        }
+    }
 
     function logout() {
         localStorage.clear()
@@ -46,7 +60,8 @@ function Header() {
          <h1 className='text-2xl md:text-3xl cursor-pointer font-bold font-mono tracking-widest'>CRM</h1>
     </div>
 
-    <div className='flex justify-center items-center pr-7'>
+    <div className='flex justify-center items-center pr-2'>
+
         {
             isLogin.id? 
             <div className='flex'>
@@ -67,13 +82,24 @@ function Header() {
                     </Link>
 
                     <Link to={"/dashboard/customers"}>
-                        <p className='ms-2 hidden sm:inline'>Customers</p>
+                        <p className='hidden sm:inline'>Customers</p>
                     </Link>
                 </div>
             </div>
              : null
         }
-         {isLogin.id? <p onClick={logout} className='mx-2 cursor-pointer'><LuLogOut color='red' /></p>: <div>
+
+        <Separator orientation='vertical' className='mx-2 mr-6'/>
+
+        <div className='mr-4'>
+            <div className='flex '>
+                <Switch onClick={() => changeTheme()} className='mr-2 mt-1'/>
+                {
+                    theme? <Moon /> : <Sun />
+                }
+            </div>
+        </div>
+         {isLogin.id? <p onClick={logout} className='mx-2 ml-3 cursor-pointer'><LuLogOut color='red' size="1.4rem"/></p>: <div>
              <NavLink to={"/login"} className={`px-2`}>
              <a className="mx-2">
                      SignIn
