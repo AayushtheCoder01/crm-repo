@@ -12,7 +12,8 @@ function App() {
         {
           userData? <SpinnyWrapper backgroundEffect={false}><WavyBars></WavyBars></SpinnyWrapper>: null
         }
-        </div>   
+        </div>
+      <div></div>
     </>
   )
 }
