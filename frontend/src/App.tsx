@@ -8,6 +8,7 @@ function App() {
   const userData = useRecoilValue(pageLoading)
   return (
     <>
+      <div></div>
       <div className='w-full h-screen flex justify-center items-center'>
         {
           userData? <SpinnyWrapper backgroundEffect={false}><WavyBars></WavyBars></SpinnyWrapper>: null
