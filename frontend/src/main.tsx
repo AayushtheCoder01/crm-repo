@@ -1,4 +1,4 @@
-import { lazy, StrictMode, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import {createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.tsx'
@@ -10,8 +10,6 @@ import Login from './pages/Login.tsx'
 import Dashboard from './pages/Dashboard.tsx'
 import Console from "./pages/console.tsx";
 import SettingsPage from "./pages/Settings.tsx";
-import SpinnyWrapper from "spinny-loader/wrapper";
-import {WavyBars} from "spinny-loader";
 const SalesPage = lazy(() => import('./pages/SalesPage.tsx'))
 const Customer = lazy(() => import('./pages/Customer.tsx'))
 const Products = lazy(() => import('./pages/Products.tsx'))
