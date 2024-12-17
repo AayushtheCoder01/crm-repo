@@ -91,6 +91,15 @@ customerRoutes.get("/get/:number", async(c) => {
         const customer = await prisma.customer.findUnique({
             where: {
                 number: parseInt(number)
+            },
+            select: {
+                name: true,
+                address: true,
+                number: true,
+                email: true,
+                city: true,
+                tpv: true,
+                purchases: true
             }
         })
         c.status(200)

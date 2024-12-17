@@ -1,5 +1,6 @@
 import { Card, CardContent } from "./ui/card"
 import { CalendarDays, Mail, Phone, MapPin } from "lucide-react"
+import {Link} from "react-router-dom";
 
 interface CustomerCardProps {
   name: string
@@ -19,6 +20,7 @@ export function CustomerCard({
   tpv = 0
 }: CustomerCardProps) {
   return (
+      <Link to={`/details/customer/${phoneNumber}`}>
     <Card className="w-[65vw] sm:w-[65vw] mb-4 cursor-pointer ">
       <CardContent className="p-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -50,5 +52,6 @@ export function CustomerCard({
         </div>
       </CardContent>
     </Card>
+        </Link>
   )
 }
