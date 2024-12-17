@@ -1,0 +1,9 @@
+
+function DetailsPage({children}: {children: React.ReactNode}) {
+    return(
+        <div className='pt-20s'>
+            {children}
+        </div>
+    )
+}
+export default  DetailsPage
