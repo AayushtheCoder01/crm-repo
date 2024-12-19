@@ -93,13 +93,15 @@ customerRoutes.get("/get/:number", async(c) => {
                 number: parseInt(number)
             },
             select: {
+                id: true,
                 name: true,
                 address: true,
                 number: true,
                 email: true,
                 city: true,
                 tpv: true,
-                purchases: true
+                purchases: true,
+                createdAt: true,
             }
         })
         c.status(200)
@@ -116,7 +118,39 @@ customerRoutes.get("/get/:number", async(c) => {
         })
     }
 })
-    
+
+customerRoutes.put("update/:number", async (c) => {
+    const prisma = c.get("prisma")
+    const number = c.req.param("number")
+    const body = await c.req.json()
+    try {
+        const customer = await prisma.customer.update({
+            where: {
+                number: parseInt(number)
+            },
+            data: {
+                name: body.customername,
+                address: body.address,
+                email: body.email,
+                city: body.city,
+                tpv: body.tpv
+            }
+        })
+        c.status(200)
+        return c.json({
+            success: true,
+            status: 200,
+            customer: customer,
+        })
+    } catch (error) {
+        c.status(400)
+        return c.json({
+            success: true,
+            status: 400,
+        })
+    }
+})
+
 customerRoutes.delete("/delete/:number", async (c)=> {
     const prisma = c.get("prisma")
     const number = c.req.param("number")

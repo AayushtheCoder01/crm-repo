@@ -36,6 +36,7 @@ function Header() {
             }
         }
         useEffect(()=> {
+            checkTheme()
             login()
         }, [])
 
@@ -43,9 +44,17 @@ function Header() {
         if(theme === false) {
             setTheme(true)
             document.documentElement.classList.add("dark")
+            localStorage.setItem("theme", "dark")
         } else {
             setTheme(false)
             document.documentElement.classList.remove("dark")
+            localStorage.setItem("theme", "light")
+        }
+    }
+    function checkTheme() {
+        if(localStorage.getItem("theme") === "dark") {
+            setTheme(true)
+            document.documentElement.classList.add("dark")
         }
     }
 
@@ -93,7 +102,7 @@ function Header() {
 
         <div className='mr-4'>
             <div className='flex '>
-                <Switch onClick={() => changeTheme()} className='mr-2 mt-1'/>
+                <Switch checked={theme} onClick={() => changeTheme()} className='mr-2 mt-1'/>
                 {
                     theme? <Moon /> : <Sun />
                 }

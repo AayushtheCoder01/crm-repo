@@ -33,7 +33,6 @@ function CustomerDetails() {
     }
     // console.log(customerData)
     async function updateCustomerFn() {
-        setEditable(false)
         setLoading(true)
         const Backend_URL = import.meta.env.VITE_BACKEND_URL
         try {
