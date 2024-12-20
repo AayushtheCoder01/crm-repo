@@ -173,7 +173,8 @@ saleRoutes.get("/get/:id", async(c) => {
                 id: parseInt(id),
             },
             include: {
-                product: true
+                product: true,
+                customer: true,
             }
         })
         c.status(200)

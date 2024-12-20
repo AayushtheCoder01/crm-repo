@@ -6,6 +6,7 @@ import { useState } from "react"
 import { SaleRegistrationComponent } from "../components/sale-registration"
 import {Input} from "../components/ui/input.tsx";
 import {Search} from "lucide-react";
+import {Link} from "react-router-dom";
 
 
  function SalesPage() {
@@ -86,10 +87,12 @@ import {Search} from "lucide-react";
                 search ? null :
                     <div>
                         {sales.map((sale: any, index: any) => (
+                            <Link key={index} to={`/details/sale/${sale.id}`}>
+                                <StackableSalesCard productName={sale.itemname} saleDate={sale.saleDate}
+                                                    quantity={sale.quantity} phoneNumber={sale.number}
+                                                    totalPrice={sale.totalPrice}/>
+                            </Link>
 
-                            <StackableSalesCard key={index} productName={sale.itemname} saleDate={sale.saleDate}
-                                                quantity={sale.quantity} phoneNumber={sale.number}
-                                                totalPrice={sale.totalPrice}/>
                         ))}
                     </div>
             }

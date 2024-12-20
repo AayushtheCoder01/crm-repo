@@ -1,4 +1,4 @@
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Input} from "../../components/ui/input.tsx";
@@ -116,10 +116,13 @@ function CustomerDetails() {
                     {customerData.purchases ?
                         customerData.purchases.map((item: any, index: any) => {
                             return (
-                                <StackableSalesCard key={index} productName={item.itemname} saleDate={item.saleDate}
-                                                    quantity={item.quantity} phoneNumber={item.number}
-                                                    totalPrice={item.totalPrice}
-                                />
+                                <Link key={index} to={`/details/sale/${item.id}`}>
+                                    <StackableSalesCard productName={item.itemname} saleDate={item.saleDate}
+                                                        quantity={item.quantity} phoneNumber={item.number}
+                                                        totalPrice={item.totalPrice}
+                                    />
+                                </Link>
+
                             )
                         }) : null
                     }

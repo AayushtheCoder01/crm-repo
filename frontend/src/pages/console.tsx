@@ -31,7 +31,6 @@ function Console() {
             setTotalProducts(getToatlProducts(products))
             setTotalCustomers(getTotalCustomers(customers))
         }
-        console.log(monthlySales)
     }, [sales]);
 
     return (
