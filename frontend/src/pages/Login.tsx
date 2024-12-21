@@ -4,6 +4,10 @@ import { Label } from '@radix-ui/react-label'
 import { Input } from '../components/ui/input'
 import { Signin } from '../functions/auth'
 import { Button } from '../components/ui/button'
+import {useRecoilState} from "recoil";
+import {pageLoading} from "../store/store";
+import SpinnyWrapper from "spinny-loader/wrapper";
+import {WavyBars} from "spinny-loader";
 
 function Login() {
   const [userInput, setUserInput] = useState({
@@ -12,19 +16,29 @@ function Login() {
 })
 
 const navigate = useNavigate()
+    const [loading, setLoading] = useRecoilState(pageLoading)
 
 async function getUserToken() {
-  const user = await Signin({email: userInput.email, password: userInput.password})
-        console.log(user)
-        if(user.data.success === true) {
+    setLoading(true)
+    const user = await Signin({email: userInput.email, password: userInput.password})
+    if(user.data.success === true) {
             localStorage.setItem("Authorization", user.data.jwt)
             window.location.reload()
             navigate("/dashboard")
-        }
+            setLoading(false)
+        } else {
+            setLoading(false)
+    }
 }
+if (loading) {
+    return (
+        <SpinnyWrapper backgroundEffect={false}><WavyBars/></SpinnyWrapper>
+    )
+}
+
   return (
-    <div className="flex justify-center items-center h-screen">
-        <div className="bg-white h-auto p-3 border-2 border-zinc-200 w-[55vw] mb-20 rounded-lg">
+    <div className="flex justify-center items-center h-screen dark:bg-black">
+        <div className="bg-white h-auto p-3 border-2 dark:border-zinc-600 border-zinc-200 w-[55vw] mb-20 rounded-lg dark:bg-black">
 
             <div className="flex items-start p-2 flex-col mb-4">
                 <h3 className="text-3xl font-semibold">SignIn</h3>

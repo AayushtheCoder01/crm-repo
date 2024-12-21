@@ -5,10 +5,11 @@ import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
 import SalesChart from "./console/SalesChart.tsx";
+import {useNavigate} from "react-router-dom";
 
 export function ColorfulSalesDashboard({sales, totalMonthlySales, salesGrowth, monthlyRevenue, revenueGrowth, totalProducts, totalCustomers, thisMonthCustomers, customerGrowth, salesAtom}: {sales: any, salesAtom: any, totalMonthlySales: number, salesGrowth: string, monthlyRevenue: number, revenueGrowth: string , totalProducts: number, totalCustomers: number, thisMonthCustomers: number, customerGrowth: string}) {
     const [dateRange, setDateRange] = useState({ start: '2024-10-01', end: '2024-10-28' })
-
+  const navigate = useNavigate()
   return (
     <div className="min-h-screen dark:bg-black p-1 md:p-3 rounded-xl transition-colors duration-200">
       <div className="w-[65vw] max-w-7xl mx-auto bg-white dark:bg-black p-5 md:p-6 rounded-lg transition-colors duration-200">
@@ -129,13 +130,13 @@ export function ColorfulSalesDashboard({sales, totalMonthlySales, salesGrowth, m
               </TableHeader>
               <TableBody>
                 {salesAtom.map((sale: any) => (
-                  <TableRow key={sale.id}>
-                    <TableCell className="font-medium text-gray-800 dark:text-gray-200">{new Date(sale.saleDate).toLocaleDateString()}</TableCell>
-                    <TableCell className="text-gray-800 dark:text-gray-200">{sale.number}</TableCell>
-                    <TableCell className="text-right text-gray-800 dark:text-gray-200">{sale.quantity}</TableCell>
-                    <TableCell className="text-right text-gray-800 dark:text-gray-200">{sale.itemname}</TableCell>
-                    <TableCell className="text-right text-gray-800 dark:text-gray-200">{sale.totalPrice.toFixed(2)}</TableCell>
-                  </TableRow>
+                      <TableRow onClick={() => navigate(`/details/sale/${sale.id}`)} className={'cursor-pointer'} key={sale.id}>
+                        <TableCell className="font-medium text-gray-800 dark:text-gray-200">{new Date(sale.saleDate).toLocaleDateString()}</TableCell>
+                        <TableCell className="text-gray-800 dark:text-gray-200">{sale.number}</TableCell>
+                        <TableCell className="text-right text-gray-800 dark:text-gray-200">{sale.quantity}</TableCell>
+                        <TableCell className="text-right text-gray-800 dark:text-gray-200">{sale.itemname}</TableCell>
+                        <TableCell className="text-right text-gray-800 dark:text-gray-200">{sale.totalPrice.toFixed(2)}</TableCell>
+                      </TableRow>
                 ))}
               </TableBody>
             </Table>

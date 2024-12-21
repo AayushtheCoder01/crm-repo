@@ -112,7 +112,7 @@ function CustomerDetails() {
                     </div>
                 </div>
                 <div className='mt-[2.5rem]'>
-                    <h3 className='text-2xl font-semibold text-start sm:text-center mb-3'>Purchases</h3>
+                    <h3 className='text-2xl font-semibold text-start sm:text-center mb-3'>Purchases: {customerData.purchases?.length}</h3>
                     {customerData.purchases ?
                         customerData.purchases.map((item: any, index: any) => {
                             return (

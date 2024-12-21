@@ -4,6 +4,10 @@ import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { signup } from "../functions/auth"
 import { useNavigate } from "react-router-dom"
+import {useRecoilState} from "recoil";
+import {pageLoading} from "../store/store";
+import SpinnyWrapper from "spinny-loader/wrapper";
+import {WavyBars} from "spinny-loader";
 
 function Signup() {
     const [userInput, setUserInput] = useState({
@@ -12,20 +16,30 @@ function Signup() {
         password: ""
     })
     const navigate = useNavigate()
+    const [loding, setLoding] = useRecoilState(pageLoading)
 
     async function createNewUser() {
+        setLoding(true)
         const user = await signup({email: userInput.email, password: userInput.password, name: userInput.name})
-        console.log(user)
         if(user.data.success === true) {
             localStorage.setItem("Authorization", user.data.jwt)
+            setLoding(false)
             window.location.reload()
             navigate("/dashboard")
+        } else {
+            setLoding(false)
         }
+    }
+
+    if (loding) {
+        return (
+            <SpinnyWrapper><WavyBars/></SpinnyWrapper>
+        )
     }
 
   return (
     <div className="flex justify-center items-center h-screen">
-        <div className="bg-white h-auto p-3 border-2 border-zinc-200 w-[55vw] mb-20 rounded-lg">
+        <div className="bg-white h-auto p-3 border-2 dark:border-zinc-600 dark:bg-black border-zinc-200 w-[55vw] mb-20 rounded-lg">
 
             <div className="flex items-start p-2 flex-col mb-4">
                 <h3 className="text-3xl font-semibold">SignUp</h3>

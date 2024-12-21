@@ -9,6 +9,7 @@ import { Sun } from 'lucide-react';
 import { Moon } from 'lucide-react';
 import {Separator} from "./ui/separator.tsx";
 
+
 function Header() {
     const [theme, setTheme] = useState(false)
     const isLogin = useRecoilValue(userDataAtom)
@@ -21,20 +22,21 @@ function Header() {
     const updateSalesAtom = useSetRecoilState(SalesAtom)
     const updateProductsAtom = useSetRecoilState(ProductsAtom)
 
-        async function login() {
-            // const navigate = useNavigate()
-            setLoading(true)
-            try {
-                const user: any = await authlogin({Authorization: localStorage.getItem("Authorization"), updateCustomerAtom: updateCustomerAtom, updateSalesAtom: updateSalesAtom, updateProductsAtom: updateProductsAtom})
-                if(user.data.success === true) {
-                  userData({email: user.data.user.email, name: user.data.user.name, id: user.data.user.id})
-                  navigate("/dashboard/console")
-                } 
-                setLoading(false)
-            } catch (error) {
-                setLoading(false)
+    async function login() {
+        setLoading(true)
+        try {
+            const user: any = await authlogin({Authorization: localStorage.getItem("Authorization"), updateCustomerAtom: updateCustomerAtom, updateSalesAtom: updateSalesAtom, updateProductsAtom: updateProductsAtom})
+            if(user.data.success === true) {
+                userData({email: user.data.user.email, name: user.data.user.name, id: user.data.user.id})
+                navigate("/dashboard/console")
             }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
         }
+    }
+
         useEffect(()=> {
             checkTheme()
             login()

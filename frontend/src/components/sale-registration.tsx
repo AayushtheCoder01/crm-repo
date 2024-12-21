@@ -17,7 +17,7 @@ interface Item {
 }
 
 export function SaleRegistrationComponent() {
-  const productsAtom = useRecoilValue(ProductsAtom)
+  const productsAtom: any = useRecoilValue(ProductsAtom)
 
   // add itemname quantity and total price
   const [name, setName] = useState('')
@@ -154,6 +154,8 @@ export function SaleRegistrationComponent() {
                   <div className="space-y-2">
                     <Label htmlFor="item-id">Item ID</Label>
                     <select
+                        defaultValue={productsAtom[0].id}
+                        className={'dark:text-black'}
                       onChange={(e) => setNewItem({ ...newItem, id: e.target.value })}
                       id="options" name="options">
                       {productsAtom.map((product:any) => (

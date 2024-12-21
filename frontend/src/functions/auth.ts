@@ -34,7 +34,6 @@ export async function Signin({email, password}: {email: string, password: string
 }
 
 export async function authlogin({Authorization, updateCustomerAtom, updateSalesAtom, updateProductsAtom}: {Authorization: any, updateCustomerAtom?: any, updateSalesAtom?: any, updateProductsAtom?: any}) {
-    
     try {
         const user = await axios.get(`${Backend_URL}/api/v1/user/tokenlogin`, {
             headers: {
