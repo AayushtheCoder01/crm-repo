@@ -1,5 +1,5 @@
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from './ui/sidebar'
-import { Calendar, Home, Inbox, Search, Settings } from 'lucide-react'
+import { Boxes, House, DollarSign, UsersRound, Cog } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 
 // Menu items.
@@ -7,27 +7,27 @@ const items = [
     {
       title: "Console",
       url: "dashboard/console",
-      icon: Home,
+      icon: <House size={'1.2rem'}/>,
     },
     {
       title: "Sales",
       url: "dashboard/sales",
-      icon: Inbox,
+      icon: <DollarSign size={'1.2rem'}/>,
     },
     {
       title: "Products",
       url: "dashboard/products",
-      icon: Calendar,
+      icon: <Boxes size={'1.2rem'}/>,
     },
     {
       title: "Customers",
       url: "dashboard/customers",
-      icon: Search,
+      icon: <UsersRound size={'1.2rem'}/>,
     },
     {
       title: "Settings",
       url: "dashboard/settings",
-      icon: Settings,
+      icon: <Cog size={'1.2rem'}/>,
     },
   ]
 function AppSidebar() {
@@ -44,6 +44,7 @@ function AppSidebar() {
                   <SidebarMenuButton asChild>
                     <NavLink to={`/${item.url}`}>
                       {/* <item.icon /> */}
+                        <span>{item.icon}</span>
                       <span>{item.title}</span>
                     </NavLink>
                   </SidebarMenuButton>
