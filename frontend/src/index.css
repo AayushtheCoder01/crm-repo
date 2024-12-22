@@ -13,6 +13,9 @@ body{
 .dark{
   background-color: black;
 }
+.avatar{
+      background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+}
 @layer base {
   :root {
         --background: 0 0% 100%;

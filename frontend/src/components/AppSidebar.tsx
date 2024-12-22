@@ -33,7 +33,7 @@ const items = [
 function AppSidebar() {
 
   return (
-    <Sidebar>
+    <Sidebar className={''}>
       <SidebarContent className='dark:bg-black overflow-hidden'>
         <SidebarGroup>
           <SidebarGroupLabel className='m-2 ml-5 mt-3 text-lg'>C R M</SidebarGroupLabel>
