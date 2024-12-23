@@ -42,3 +42,17 @@ console.log(customerDetails)
         console.log("error", error)
     }
 }
+
+export async function deleteCustomerFn({number}: {number: number}) {
+    try {
+        const customer = await axios.delete(`${Backend_URL}/api/v1/customer/delete/${number}`, {
+            headers: {
+                Authorization: localStorage.getItem("Authorization")
+            }
+        })
+        return customer
+    } catch (error) {
+        console.log("error", error)
+    }
+
+}

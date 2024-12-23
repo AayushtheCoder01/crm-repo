@@ -1,4 +1,4 @@
-import {Link, useParams} from 'react-router-dom'
+import {Link, useNavigate, useParams} from 'react-router-dom'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Input} from "../../components/ui/input.tsx";
@@ -8,13 +8,19 @@ import { WavyBars } from 'spinny-loader';
 import {StackableSalesCard} from "../../components/stackable-sales-card.tsx";
 import {Pen, X} from "lucide-react";
 import {Button} from "../../components/ui/button.tsx";
+import {deleteCustomerFn, getCustomerFn} from "../../functions/customer.ts";
+import {useSetRecoilState} from "recoil";
+import {CustomerAtom} from "../../store/store.ts";
 function CustomerDetails() {
     const {number} = useParams()
     const [customerData, setCustomerData]: any = useState({})
     const [resetData, setResetData]: any = useState({})
     const [loading, setLoading] = useState(false)
     const [editable, setEditable] = useState(false)
-    async function getCustomerFn() {
+
+    const navigate = useNavigate()
+    const setCustomerAtom = useSetRecoilState(CustomerAtom)
+    async function getCustomer() {
         setLoading(true)
         try {
             const Backend_URL = import.meta.env.VITE_BACKEND_URL
@@ -50,18 +56,28 @@ function CustomerDetails() {
             console.log("error", error)
         }
     }
+
+    async function deleteCustomer(number: number) {
+        setLoading(true)
+        await deleteCustomerFn({number: number})
+        const customers: any = await getCustomerFn()
+        setCustomerAtom(customers.data.customer)
+        navigate("/dashboard/customers")
+        setLoading(false)
+    }
     function editFunction() {
         setEditable(!editable)
         setCustomerData(resetData)
     }
     useEffect(() => {
-        getCustomerFn()
+        getCustomer()
     }, []);
     if(loading){
         return <div>
             <SpinnyWrapper backgroundEffect={false}><WavyBars></WavyBars></SpinnyWrapper>
         </div>
     }
+
     return (
         <>
             <div className='flex flex-col justify-center items-center h-auto min-h-[70vh] w-full mt-12 sm:mt-0'>
@@ -106,6 +122,9 @@ function CustomerDetails() {
                         </div>
                     </div>
                     <div className='flex w-full justify-center mb-5'>
+                        {
+                            editable? <Button className={'mx-3 bg-transparent border-2 border-red-700 text-black dark:text-white hover:bg-red-600'} onClick={() => deleteCustomer(customerData.number)}>Delete</Button> : null
+                        }
                         {
                             editable? <Button onClick={() => updateCustomerFn()}>Save</Button> : null
                         }

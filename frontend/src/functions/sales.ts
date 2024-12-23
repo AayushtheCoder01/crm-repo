@@ -13,3 +13,16 @@ export async function getSalesFn() {
         console.log("error", error)
     }
 }
+
+export async function deleteSale({ id }: { id: number }) {
+    try {
+        const sales = await axios.delete(`${Backend_URL}/api/v1/sale/delete/${id}`, {
+            headers: {
+                Authorization: localStorage.getItem("Authorization"),
+            },
+        })
+        return sales
+    } catch (error) {
+        console.log("error", error)
+    }
+}

@@ -129,7 +129,7 @@ customerRoutes.put("update/:number", async (c) => {
                 number: parseInt(number)
             },
             data: {
-                name: body.name,
+                name: body.customername,
                 address: body.address,
                 email: body.email,
                 city: body.city,

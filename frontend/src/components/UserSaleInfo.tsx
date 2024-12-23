@@ -1,9 +1,12 @@
 import { Table, TableBody, TableCell, TableRow } from "../components/ui/table"
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
 import {useNavigate} from "react-router-dom";
+import {deleteSale, getSalesFn} from "../functions/sales.ts";
+import {pageLoading, SalesAtom} from "../store/store.ts";
+import {useSetRecoilState} from "recoil";
 
 interface SaleInfo {
-  id: string
+  id: number
   itemname: string
   number: string
   category: string
@@ -17,8 +20,20 @@ interface UserSaleInfoProps {
   saleInfo: SaleInfo
 }
 
+
 export default function UserSaleInfo({ saleInfo }: UserSaleInfoProps) {
   const navigate = useNavigate()
+  const setLoading = useSetRecoilState(pageLoading)
+  const setSalesAtom = useSetRecoilState(SalesAtom)
+  async function handleDelete() {
+    setLoading(true)
+    await deleteSale({id: saleInfo.id})
+    const sales: any = await getSalesFn()
+    setSalesAtom(sales.data.sales)
+    setLoading(false)
+    navigate("/dashboard/sales")
+  }
+
   return (
     <Card className="w-full max-w-3xl mx-auto">
       <CardHeader>
@@ -62,6 +77,10 @@ export default function UserSaleInfo({ saleInfo }: UserSaleInfoProps) {
             <TableRow>
               <TableCell className="font-medium">Customer</TableCell>
               <TableCell onClick={() => navigate(`/details/customer/${saleInfo.number}`)} className={'text-blue-500 hover:underline cursor-pointer'}>See details</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="font-medium">Delete sale</TableCell>
+              <TableCell onClick={() => handleDelete()} className={'hover:underline cursor-pointer text-zinc-500 hover:text-red-500'}>delete</TableCell>
             </TableRow>
           </TableBody>
         </Table>
