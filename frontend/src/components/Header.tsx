@@ -72,14 +72,8 @@ function Header() {
               {/*<h1 className='text-2xl md:text-3xl cursor-pointer font-bold font-mono tracking-widest'>CRM</h1>*/}
 
           </div>
-          <div className='flex w-full justify-start items-center pl-[8rem]'>
-              {
-                  isLogin.id ?<div onClick={() => navigate("/dashboard/settings")} className='avatar cursor-pointer w-9 h-9 mr-1 m-1 font-semibold rounded-full flex justify-center items-center'>{userData?.name?.slice(0, 1) || "D"}</div> : null
 
-              }
-          </div>
-
-          <div className='flex justify-center items-center pr-2'>
+          <div className='flex justify-center items-center pr-2 py-3'>
 
               {
                   isLogin.id ?

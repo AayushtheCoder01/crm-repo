@@ -23,7 +23,7 @@ export async function signup({email, password, name}: signupProps) {
             {
                 to_name: name,
                 to_email: email,
-                from_name: "CRM Company",
+                from_name: "Aayush",
                 message: "Your account has been created successfully"
             },
             '9_kBIJXhgaXwl3gHX'

@@ -1,6 +1,18 @@
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from './ui/sidebar'
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarGroup,
+    SidebarGroupContent,
+    SidebarGroupLabel,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem
+} from './ui/sidebar'
 import { Boxes, House, DollarSign, UsersRound, Cog } from 'lucide-react'
-import { NavLink } from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
+import {useRecoilValue} from "recoil";
+import {userDataAtom} from "../store/store.ts";
 
 // Menu items.
 const items = [
@@ -31,6 +43,8 @@ const items = [
     },
   ]
 function AppSidebar() {
+    const navigate = useNavigate()
+    const isLogin = useRecoilValue(userDataAtom)
 
   return (
     <Sidebar className={''}>
@@ -52,10 +66,24 @@ function AppSidebar() {
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
+
         </SidebarGroup>
+
       </SidebarContent>
+        <SidebarFooter className={'bg-black'}>
+            <div className='flex w-full justify-start items-center h-full '>
+                {
+                    isLogin.id ? <div onClick={() => navigate("/dashboard/settings")}
+                                      className='avatar cursor-pointer w-9 h-9 ml-2 m-1 font-semibold rounded-full flex justify-center items-center'>{isLogin?.name?.slice(0, 1) || "D"}</div> : null
+
+                }
+                {
+                    isLogin.id? <h3 className='mx-2'>{isLogin.name || "Dummy"}</h3>: null
+                }
+            </div>
+        </SidebarFooter>
     </Sidebar>
-          )
+  )
 }
 
 export default AppSidebar
