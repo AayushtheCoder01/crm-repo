@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import { LuLogOut } from "react-icons/lu";
 import { Switch } from "../components/ui/switch.tsx"
 import {Link, NavLink, useNavigate} from 'react-router-dom'
-import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
+import { useRecoilValue, useSetRecoilState} from 'recoil'
 import { CustomerAtom, pageLoading, ProductsAtom, SalesAtom, userDataAtom } from '../store/store'
 import { authlogin } from '../functions/auth';
 import { Sun } from 'lucide-react';
@@ -16,7 +16,7 @@ function Header() {
     const setLoading = useSetRecoilState(pageLoading)
 
     const navigate = useNavigate()
-    const [userData, setUserData] = useRecoilState(userDataAtom)
+    const setUserData = useSetRecoilState(userDataAtom)
 
     const updateCustomerAtom = useSetRecoilState(CustomerAtom)
     const updateSalesAtom = useSetRecoilState(SalesAtom)
