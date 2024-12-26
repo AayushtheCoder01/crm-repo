@@ -72,9 +72,12 @@ import {Link} from "react-router-dom";
                 }
                 {
                     todaySales.map((sale: any, index: any) => (
-                        <StackableSalesCard key={index} productName={sale.itemname} saleDate={sale.saleDate}
+                        <Link key={index} to={`/details/sale/${sale.id}`}>
+                        <StackableSalesCard productName={sale.itemname} saleDate={sale.saleDate}
                                             quantity={sale.quantity} phoneNumber={sale.number} totalPrice={sale.totalPrice}/>
+                        </Link>
                     ))
+
                 }
             </div>
 

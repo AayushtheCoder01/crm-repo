@@ -1,5 +1,5 @@
 // import UserSaleInfo from "../../components/UserSaleInfo.tsx";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import UserSaleInfo from "../../components/UserSaleInfo.tsx";
@@ -14,6 +14,8 @@ function SalesDetails() {
     const [saleDetails, setSaleDetails]: any = useState({})
     const [saleItems, setSaleItems]: any = useState([])
     const [isLoading, setIsLoading] = useRecoilState(pageLoading)
+
+    const navigate = useNavigate()
     async function getSalesFn() {
         setIsLoading(true)
         try {
@@ -32,6 +34,7 @@ function SalesDetails() {
         } catch (error) {
             console.log("error", error)
             setIsLoading(false)
+            navigate('/dashboard/sales')
         }
     }
     useEffect(() => {

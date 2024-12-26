@@ -47,6 +47,7 @@ export function SaleRegistrationComponent() {
       setIsAddingItem(false)
     }
   }
+  console.log(sendMail)
 
   const handleRemoveItem = (id: string) => {
     setItems(items.filter(item => item.id !== id))
@@ -83,7 +84,7 @@ export function SaleRegistrationComponent() {
   )
     console.log(api)
     if((await api).data.success === true) {
-      if(sendMail) {
+      if(sendMail === true) {
         await sendPurchaseMail({name: name, email: email, totalPrice: calculateTotal()})
       }
       setPageLoading(false)
