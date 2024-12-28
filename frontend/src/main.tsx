@@ -13,6 +13,7 @@ import SettingsPage from "./pages/Settings.tsx";
 import DetailsPage from "./pages/details/Details.tsx";
 import CustomerDetails from "./pages/details/CustomerDeatails.tsx";
 import SalesDetails from "./pages/details/SalesDetails.tsx";
+import RevenueDashboard from "./pages/details/RevenueDb.tsx";
 const SalesPage = lazy(() => import('./pages/SalesPage.tsx'))
 const Customer = lazy(() => import('./pages/Customer.tsx'))
 const Products = lazy(() => import('./pages/Products.tsx'))
@@ -61,6 +62,12 @@ const router = createBrowserRouter([
       {
         path: "details/sale/:id",
         element: <DetailsPage><SalesDetails/></DetailsPage> ,
+      },{
+        path: "dashboard/revenue",
+        element: <DetailsPage><RevenueDashboard/></DetailsPage> || <div>Hello</div>,
+      },{
+        path: "dashboard/profits",
+        element: <DetailsPage><RevenueDashboard/></DetailsPage> ,
       },
       {
         path: "dashboard",

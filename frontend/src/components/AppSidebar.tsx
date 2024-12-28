@@ -9,7 +9,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem
 } from './ui/sidebar'
-import { Boxes, House, DollarSign, UsersRound, Cog } from 'lucide-react'
+import {Boxes, House, DollarSign, UsersRound, Cog, Banknote, HandCoins} from 'lucide-react'
 import {NavLink, useNavigate} from 'react-router-dom'
 import {useRecoilValue} from "recoil";
 import {userDataAtom} from "../store/store.ts";
@@ -37,10 +37,20 @@ const items = [
       icon: <UsersRound size={'1.2rem'}/>,
     },
     {
-      title: "Settings",
-      url: "dashboard/settings",
-      icon: <Cog size={'1.2rem'}/>,
+      title: "Revenue",
+      url: "dashboard/revenue",
+      icon: <Banknote size={'1.2rem'}/>,
     },
+    {
+      title: "Profits",
+      url: "dashboard/profits",
+      icon: <HandCoins size={'1.2rem'}/>,
+    },
+    {
+        title: "Settings",
+        url: "dashboard/settings",
+        icon: <Cog size={'1.2rem'}/>,
+    }
   ]
 function AppSidebar() {
     const navigate = useNavigate()

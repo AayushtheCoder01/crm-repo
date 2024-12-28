@@ -9,7 +9,7 @@ import {
     ResponsiveContainer
 } from 'recharts';
 
-const SalesChart = ({sales}: {sales: any}) => {
+const   SalesChart = ({sales}: {sales: any}) => {
     const data = sales
 
     // Function to format numbers in Indian style (with commas)
@@ -25,7 +25,7 @@ const SalesChart = ({sales}: {sales: any}) => {
             <CardContent>
                 <div className="h-96 w-full">
                     <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={data}>
+                        <BarChart className={'dark:text-black'} data={data}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis
                                 dataKey="month"
