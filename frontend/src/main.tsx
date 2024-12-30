@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         element: <DetailsPage><SalesDetails/></DetailsPage> ,
       },{
         path: "dashboard/revenue",
-        element: <DetailsPage><RevenueDashboard/></DetailsPage> || <div>Hello</div>,
+        element: <DetailsPage><RevenueDashboard/></DetailsPage>,
       },{
         path: "dashboard/profits",
         element: <DetailsPage><RevenueDashboard/></DetailsPage> ,
