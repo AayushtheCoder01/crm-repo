@@ -18,6 +18,7 @@ export const SalesAtom = atom({
     default: [],
 })
 
+
 export const ProductsAtom = atom({
     key: "ProductsAtom",
     default: [],
@@ -26,4 +27,13 @@ export const ProductsAtom = atom({
 export const CustomerAtom = atom({
     key: "CustomerAtom",
     default: [],
+})
+
+export const CustomerDetailsAtom = atom({
+    key: "CustomerDetailsAtom",
+    default: {
+        customerGrowth: "0%",
+        newCustomers: 0,
+        totalCustomers: 0,
+    },
 })

@@ -61,11 +61,13 @@ export function getTotalMonthlySales(sales: any) {
 
     return {
         totalMonthlySales: totalMonthlySales.length,
-        salesGrowth: salesGrowthPercentage
+        salesGrowth: salesGrowthPercentage,
+        prevMonthSales: prevMonthSales.length,
     }
 }
 
 export function getTotalRevenueThisMonth(monthlySales: any) {
+
     const month = new Date().getMonth()
     const totalMonthlySales = monthlySales.filter((sale: any) => (sale.month == monthNames[month]))
 

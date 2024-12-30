@@ -11,6 +11,7 @@ export function ColorfulSalesDashboard({sales, totalMonthlySales, salesGrowth, m
     const [dateRange, setDateRange] = useState({ start: '2024-10-01', end: '2024-10-28' })
   const navigate = useNavigate()
 
+  console.log(monthlyRevenue, totalMonthlySales)
   return (
     <div className="min-h-screen dark:bg-black p-1 md:p-3 rounded-xl transition-colors duration-200">
       <div className="w-[65vw] max-w-7xl mx-auto bg-white dark:bg-black p-5 md:p-6 rounded-lg transition-colors duration-200">
