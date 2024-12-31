@@ -3,8 +3,20 @@ import {CustomerDetailsAtom, SalesAtom} from "../../store/store.ts";
 import {useEffect, useState} from "react";
 import {getMonthlySalesArr, getTotalMonthlySales, getTotalRevenueThisMonth} from "../../functions/console.ts";
 import SalesChart from "../../components/console/SalesChart.tsx";
-import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
+import {
+    Bar,
+    BarChart,
+    CartesianGrid,
+    Legend,
+    Line,
+    LineChart,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis
+} from "recharts";
 import {Card, CardContent, CardHeader, CardTitle} from "../../components/ui/card.tsx";
+import {getRevenueByCategory} from "./revenue.ts";
 
 function RevenueDashboard() {
     const sales:any = useRecoilValue(SalesAtom)
@@ -13,13 +25,15 @@ function RevenueDashboard() {
     const [thisMonthRev, setThisMonthRev]: any = useState({})
     const [numberOfSales, setNumberOfSales]: any = useState({})
 
+    const [revByCategory, setRevByCategory]: any = useState({})
+
     const month = new Date().getMonth()
 
     useEffect(() => {
         setMonthlySales(getMonthlySalesArr(sales))
         setNumberOfSales(getTotalMonthlySales(sales))
+        setRevByCategory(getRevenueByCategory(sales))
     }, []);
-
     useEffect(() => {
         setThisMonthRev(getTotalRevenueThisMonth(monthlySales))
     }, [monthlySales]);
@@ -99,9 +113,32 @@ function RevenueDashboard() {
                     <CardTitle className={'text-start'}>New Customers this Month</CardTitle>
                 </CardHeader>
                 <CardContent className="text-2xl text-start font-bold hover:text-blue-500">
-                    ${customerDetails?.newCustomers ?? 0}
+                    {customerDetails?.newCustomers ?? 0} Customers
                 </CardContent>
             </Card>
+        </div>
+
+        <div className="h-[30rem] my-10 w-full flex justify-center">
+            <div className="h-auto w-auto min:w-8/12">
+                <p className="text-center">Revenue by Category</p>
+            <ResponsiveContainer className={"dark:text-black"} width="100%" height="100%">
+                <BarChart data={revByCategory.revenueByAllCategories} margin={{top: 20, right: 30, left: 40, bottom: 5}}>
+                    <CartesianGrid strokeDasharray="3 3"/>
+                    <XAxis dataKey="category"/>
+                    <YAxis
+                        tickFormatter={(value) => `$${value.toLocaleString()}`}
+                    />
+                    <Tooltip
+                        formatter={(value) => [`$${value.toLocaleString()}`, 'Revenue']}
+                    />
+                    <Bar
+                        dataKey="revenue"
+                        fill="#4f46e5"
+                        radius={[4, 4, 0, 0]}
+                    />
+                </BarChart>
+            </ResponsiveContainer>
+            </div>
         </div>
 
         <div className='h-96 w-full'>
@@ -128,7 +165,7 @@ function RevenueDashboard() {
             </ResponsiveContainer>
         </div>
     </>
-        ;
+
 }
 
 export default RevenueDashboard

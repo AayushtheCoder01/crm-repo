@@ -26,3 +26,4 @@ export async function deleteSale({ id }: { id: number }) {
         console.log("error", error)
     }
 }
+

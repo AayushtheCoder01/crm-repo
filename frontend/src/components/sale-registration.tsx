@@ -39,6 +39,8 @@ export function SaleRegistrationComponent() {
   const [items, setItems] = useState<Item[]>([])
   const [newItem, setNewItem] = useState<Item>({ id: '', productname: '', price: 0, quantity: 0 })
   const [isAddingItem, setIsAddingItem] = useState(false)
+  const [category, setCategory] = useState('')
+  const [paymentmethod, setPaymentMethod] = useState('')
 
   const handleAddItem = () => {
     if (newItem.id && newItem.productname && newItem.price > 0) {
@@ -66,6 +68,8 @@ export function SaleRegistrationComponent() {
       number: Number(number),
       email: email,
       address: address,
+      paymentmethod: paymentmethod,
+      category: category.toLowerCase(),
       city: city,
       year: Number(year),
       month: Number(month),
@@ -93,7 +97,6 @@ export function SaleRegistrationComponent() {
       setPageLoading(false)
   }
   }
-
   if (isPageLoading) {
     return (<SpinnyWrapper backgroundEffect={false}><WavyBars/></SpinnyWrapper>)
   }
@@ -139,13 +142,21 @@ export function SaleRegistrationComponent() {
               <Input id="year" value={itemname} onChange={(e) => setItmename(e.target.value)} required/>
             </div>
             <div className="space-y-2">
+              <Label htmlFor="category">Category</Label>
+              <Input id="category" value={category} onChange={(e) => setCategory(e.target.value)} required/>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="paymentMethod">Payment Method</Label>
+              <Input id="year" value={paymentmethod} onChange={(e) => setPaymentMethod(e.target.value)} required/>
+            </div>
+            <div className="space-y-2">
               <Label htmlFor="year">Quantity</Label>
               <Input id="year" type="number" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))}
                      required/>
             </div>
             <div className="space-y-2">
               <Label className={"m-2"} htmlFor="year">Send mail to customer</Label>
-              <Checkbox defaultChecked={sendMail} onClick={() => setSendMail(!sendMail) }/>
+              <Checkbox defaultChecked={sendMail} onClick={() => setSendMail(!sendMail)}/>
             </div>
           </div>
 
