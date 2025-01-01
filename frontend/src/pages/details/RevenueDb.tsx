@@ -18,6 +18,20 @@ import {
 import {Card, CardContent, CardHeader, CardTitle} from "../../components/ui/card.tsx";
 import {getRevenueByCategory} from "./revenue.ts";
 
+function paymentSorter(obj:any) {
+    let paymentMethodsArr = []
+    for(let paymentMode in obj) {
+        if(!obj.revenueByAllCategories) {
+            paymentMethodsArr.push({
+                paymentMode: paymentMode,
+                amount: obj[paymentMode]
+            })
+        }
+    }
+
+    return paymentMethodsArr
+}
+
 function RevenueDashboard() {
     const sales:any = useRecoilValue(SalesAtom)
     const customerDetails: any = useRecoilValue(CustomerDetailsAtom)
@@ -26,17 +40,21 @@ function RevenueDashboard() {
     const [numberOfSales, setNumberOfSales]: any = useState({})
 
     const [revByCategory, setRevByCategory]: any = useState({})
-
+    const [paymentMethods, setPaymentMethods]: any = useState([])
     const month = new Date().getMonth()
 
     useEffect(() => {
         setMonthlySales(getMonthlySalesArr(sales))
         setNumberOfSales(getTotalMonthlySales(sales))
         setRevByCategory(getRevenueByCategory(sales))
+        // payment modes sorter
     }, []);
+
     useEffect(() => {
         setThisMonthRev(getTotalRevenueThisMonth(monthlySales))
+        setPaymentMethods(paymentSorter(revByCategory.paymentModes))
     }, [monthlySales]);
+
     return <>
         <div>
             <div>
@@ -118,8 +136,8 @@ function RevenueDashboard() {
             </Card>
         </div>
 
-        <div className="h-[30rem] my-10 w-full flex justify-center">
-            <div className="h-auto w-auto min:w-8/12">
+        <div className="h-auto my-10 w-full flex flex-col md:flex-row justify-center">
+            <div className="w-full h-[30rem] flex flex-col md:w-8/12 border-2 rounded-xl mr-4 mb-2">
                 <p className="text-center">Revenue by Category</p>
             <ResponsiveContainer className={"dark:text-black"} width="100%" height="100%">
                 <BarChart data={revByCategory.revenueByAllCategories} margin={{top: 20, right: 30, left: 40, bottom: 5}}>
@@ -138,6 +156,21 @@ function RevenueDashboard() {
                     />
                 </BarChart>
             </ResponsiveContainer>
+            </div>
+
+            <div className="flex flex-col w-full md:w-4/12 border-2 rounded-xl p-3 no-scrollbar overflow-y-scroll overflow-hidden">
+                {paymentMethods.map((method:any, index:any) => {
+                    return <div key={index} className="my-2 border-2 rounded-md h-[17vh] flex flex-col justify-center items-start">
+                        <div className="p-3 text-3xl font-bold">
+                            {method.paymentMode}
+                        </div>
+
+                        <div className="p-4 text-lg">
+                            {method.amount}
+                        </div>
+                    </div>
+                    }
+                )}
             </div>
         </div>
 

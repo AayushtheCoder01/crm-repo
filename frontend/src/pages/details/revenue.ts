@@ -1,7 +1,15 @@
 export function getRevenueByCategory(sales: any){
     const revenueByAllCategories: any = []
     const revenueByCategory: any = {}
+    const paymentModes: any = {}
+
     sales.map((sale: any) => {
+        if(paymentModes[sale.paymentmethod]) {
+            paymentModes[sale.paymentmethod] += sale.totalPrice
+        } else {
+            paymentModes[sale.paymentmethod] = sale.totalPrice
+        }
+
         if(revenueByCategory[sale.category]){
             revenueByCategory[sale.category] += sale.totalPrice
         }
@@ -9,14 +17,12 @@ export function getRevenueByCategory(sales: any){
             revenueByCategory[sale.category] = sale.totalPrice
         }
     })
-
     for(let key in revenueByCategory){
-        console.log(key)
         revenueByAllCategories.push({
             "category": key || "Uncategorized",
             revenue: revenueByCategory[key]
         })
     }
 
-    return {revenueByAllCategories}
+    return {revenueByAllCategories, paymentModes}
 }
