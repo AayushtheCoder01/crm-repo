@@ -1,7 +1,9 @@
-export function getRevenueByCategory(sales: any){
+export function getRevenueByCategory({sales, month}: {sales: any, month: number}){
     const revenueByAllCategories: any = []
     const revenueByCategory: any = {}
     const paymentModes: any = {}
+
+    sales = sales.filter((sale: any) => (sale.month == month))
 
     sales.map((sale: any) => {
         if(paymentModes[sale.paymentmethod]) {

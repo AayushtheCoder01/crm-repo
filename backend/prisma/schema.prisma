@@ -13,71 +13,71 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id        String @id @default(uuid())
+model User {
+  id        String     @id @default(uuid())
   name      String?
-  email     String @unique
+  email     String     @unique
   password  String
   products  Product[]
   sales     Sale[]
-  profit    Profit? 
+  profit    Profit?
   customers Customer[]
 }
 
 model Product {
-  id              String    @id @default(uuid())
-  productId       String    @unique
-  name            String
-  description     String?
-  purchasePrice   Decimal   @db.Decimal(10, 2)
-  quantity        Int
-  brand           String?
-  dateAdded       DateTime  @default(now())
-  lastUpdated     DateTime  @updatedAt
-  userId          String
-  user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id            String   @id @default(uuid())
+  productId     String   @unique
+  name          String
+  description   String?
+  purchasePrice Decimal  @db.Decimal(10, 2)
+  quantity      Int
+  brand         String?
+  dateAdded     DateTime @default(now())
+  lastUpdated   DateTime @updatedAt
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   sales Sale[]
 }
 
 model Sale {
-  id              Int   @id @default(autoincrement())
-  itemname        String
-  quantity        Int
-  items           Json?
-  totalPrice      Int
-  paymentmethod   String?
-  category        String? //new, not migrated
-  userId          String?
-  user            User? @relation(fields: [userId], references: [id], onDelete: Cascade)
-  number          Int? 
-  customer        Customer? @relation(fields: [number], references: [number], onDelete: Cascade)
-  product         Product[]
-  saleDate        DateTime @default(now())
-  month           Int? @default(10)
-  year            Int? @default(2024)
+  id            Int       @id @default(autoincrement())
+  itemname      String
+  quantity      Int
+  items         Json?
+  totalPrice    Int
+  paymentmethod String?
+  category      String? //new, not migrated
+  userId        String?
+  user          User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  number        Int?
+  customer      Customer? @relation(fields: [number], references: [number], onDelete: Cascade)
+  product       Product[]
+  saleDate      DateTime  @default(now())
+  month         Int?      @default(10)
+  year          Int?      @default(2025)
 }
 
-model Profit{
-  id        String @id @default(uuid())
-  Totalprofit    Int @default(1)
+model Profit {
+  id              String   @id @default(uuid())
+  Totalprofit     Int      @default(1)
   lastMonthProfit Int?
-  createdAt     DateTime  @default(now())
-  lastUpdated   DateTime  @updatedAt 
-  userId    String @unique
-  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+  lastUpdated     DateTime @updatedAt
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Customer {
-  id            String @id @default(uuid())
-  name          String
-  address       String?
-  number        Int  @unique
-  email         String? @unique
-  city          String?
-  tpv           Int @default(0) 
-  userId        String
-  user          User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  purchases     Sale[]
-  createdAt     DateTime @default(now())
+  id        String   @id @default(uuid())
+  name      String
+  address   String?
+  number    Int      @unique
+  email     String?  @unique
+  city      String?
+  tpv       Int      @default(0)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  purchases Sale[]
+  createdAt DateTime @default(now())
 }

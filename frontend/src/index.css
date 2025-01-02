@@ -10,6 +10,9 @@ body{
   font-weight: bold;
   font-size: x-large;
 }
+.customScroll{
+      scrollbar-color: transparent transparent;
+}
 .dark{
   background-color: black;
 }

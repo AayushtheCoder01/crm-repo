@@ -147,7 +147,8 @@ saleRoutes.get("/get", async(c) => {
     try {
         const sales = await prisma.sale.findMany({
             where: {
-                userId: userId
+                userId: userId,
+                year: new Date().getFullYear(),
             }   
         })
         c.status(200)

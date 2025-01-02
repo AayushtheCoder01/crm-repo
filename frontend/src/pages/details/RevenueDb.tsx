@@ -46,7 +46,7 @@ function RevenueDashboard() {
     useEffect(() => {
         setMonthlySales(getMonthlySalesArr(sales))
         setNumberOfSales(getTotalMonthlySales(sales))
-        setRevByCategory(getRevenueByCategory(sales))
+        setRevByCategory(getRevenueByCategory({sales: sales, month: new Date().getMonth() + 1}))
         // payment modes sorter
     }, []);
 
@@ -136,9 +136,9 @@ function RevenueDashboard() {
             </Card>
         </div>
 
-        <div className="h-auto my-10 w-full flex flex-col md:flex-row justify-center">
+        <div className="h-[30rem] my-10 w-full flex flex-col md:flex-row justify-center">
             <div className="w-full h-[30rem] flex flex-col md:w-8/12 border-2 rounded-xl mr-4 mb-2">
-                <p className="text-center">Revenue by Category</p>
+                <p className="text-center mt-1">Revenue by Category</p>
             <ResponsiveContainer className={"dark:text-black"} width="100%" height="100%">
                 <BarChart data={revByCategory.revenueByAllCategories} margin={{top: 20, right: 30, left: 40, bottom: 5}}>
                     <CartesianGrid strokeDasharray="3 3"/>
@@ -158,7 +158,8 @@ function RevenueDashboard() {
             </ResponsiveContainer>
             </div>
 
-            <div className="flex flex-col w-full md:w-4/12 border-2 rounded-xl p-3 no-scrollbar overflow-y-scroll overflow-hidden">
+            <div className="flex flex-col w-full md:w-4/12 border-2 rounded-xl p-3 pl-7 py-2 no-scrollbar overflow-y-scroll overflow-hidden customScroll">
+                <p className="text-center my-1">Payment Methods</p>
                 {paymentMethods.map((method:any, index:any) => {
                     return <div key={index} className="my-2 border-2 rounded-md h-[17vh] flex flex-col justify-center items-start">
                         <div className="p-3 text-3xl font-bold">

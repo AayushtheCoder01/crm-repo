@@ -94,7 +94,11 @@ userRoutes.post('/signup', async (c) => {
           email: true,
           customers: true,
           products: true,
-          sales: true
+          sales: {
+              where: {
+                  year: new Date().getFullYear()
+              }
+          }
         }
       })
 

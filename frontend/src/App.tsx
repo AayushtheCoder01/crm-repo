@@ -1,11 +1,12 @@
 import './App.css'
 import { useRecoilValue } from 'recoil'
-import { pageLoading } from './store/store'
+import {pageLoading, SalesAtom} from './store/store'
 import { WavyBars } from 'spinny-loader'
 import SpinnyWrapper from "spinny-loader/wrapper";
 
 function App() {
   const userData = useRecoilValue(pageLoading)
+
   return (
     <>
       <div></div>
