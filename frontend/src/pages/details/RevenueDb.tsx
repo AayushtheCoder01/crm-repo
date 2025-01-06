@@ -67,31 +67,34 @@ function RevenueDashboard() {
                     </CardContent>
                 </Card>
 
-                <div className="flex h-auto w-full">
-                    <div className="w-full mr-5">
-                        <Card
-                            className={"mb-10 hover:scale-105 transform transition-transform duration-300 ease-in-out"}>
-                            <CardHeader>
-                                <CardTitle className={'text-start'}>Previous Month Revenue</CardTitle>
-                            </CardHeader>
-                            <CardContent className="text-2xl text-start font-bold hover:text-blue-500">
-                                ${monthlySales[month - 1]?.sales}
-                            </CardContent>
-                        </Card>
-                    </div>
+                {thisMonthRev?.revenueGrowth === "Infinity%" ? null :
+                    <div className="flex h-auto w-full">
+                        <div className="w-full mr-5">
+                            <Card
+                                className={"mb-10 hover:scale-105 transform transition-transform duration-300 ease-in-out"}>
+                                <CardHeader>
+                                    <CardTitle className={'text-start'}>Previous Month Revenue</CardTitle>
+                                </CardHeader>
+                                <CardContent className="text-2xl text-start font-bold hover:text-blue-500">
+                                    {monthlySales[month - 1]?.sales ?? 0}
+                                </CardContent>
+                            </Card>
+                        </div>
 
-                    <div className="w-full">
-                        <Card
-                            className={"mb-10 hover:scale-105 transform transition-transform duration-300 ease-in-out"}>
-                            <CardHeader>
-                                <CardTitle className={'text-start'}>Monthly Revenue Growth</CardTitle>
-                            </CardHeader>
-                            <CardContent className="text-2xl text-start font-bold">
-                                {thisMonthRev?.revenueGrowth || 0}
-                            </CardContent>
-                        </Card>
+                        <div className="w-full">
+                            <Card
+                                className={"mb-10 hover:scale-105 transform transition-transform duration-300 ease-in-out"}>
+                                <CardHeader>
+                                    <CardTitle className={'text-start'}>Monthly Revenue Growth</CardTitle>
+                                </CardHeader>
+                                <CardContent className="text-2xl text-start font-bold">
+                                    {thisMonthRev?.revenueGrowth}
+                                </CardContent>
+                            </Card>
+                        </div>
                     </div>
-                </div>
+                }
+
 
             </div>
 

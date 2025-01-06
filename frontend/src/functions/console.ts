@@ -58,7 +58,6 @@ export function getTotalMonthlySales(sales: any) {
 
     const percentageIncrease = ((totalMonthlySales.length - prevMonthSales.length) / prevMonthSales.length) * 100;
     const salesGrowthPercentage = `${percentageIncrease.toFixed(2)}%`;
-
     return {
         totalMonthlySales: totalMonthlySales.length,
         salesGrowth: salesGrowthPercentage,
@@ -67,11 +66,9 @@ export function getTotalMonthlySales(sales: any) {
 }
 
 export function getTotalRevenueThisMonth(monthlySales: any) {
-
-    const month = new Date().getMonth()
+    const month: number = new Date().getMonth()
     const totalMonthlySales = monthlySales.filter((sale: any) => (sale.month == monthNames[month]))
-
-    const prevMonthSales = monthlySales.filter((sale: any) => (sale.month == monthNames[month - 1]))
+    const prevMonthSales = monthlySales.filter((sale: any) => (sale.month == monthNames[Math.abs(month - 1)]))
     const revenueGrowth = ((totalMonthlySales[0]?.sales - prevMonthSales[0]?.sales) / prevMonthSales[0]?.sales) * 100
     return {
         revenue: totalMonthlySales[0]?.sales,
